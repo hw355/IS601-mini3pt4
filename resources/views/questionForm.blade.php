@@ -10,7 +10,7 @@
                         @if($edit === FALSE)
                             {!! Form::model($question, ['action' => 'QuestionController@store']) !!}
                         @else()
-                            {!! Form::model($question, ['route' => ['questions.update', $question->id], 'method' => 'patch']) !!}
+                            {!! Form::model($question, ['route' => ['questions.update', $question->id], 'method' => 'put']) !!}
                         @endif
                         <div class="form-group">
                             {!! Form::label('body', 'Body') !!}
