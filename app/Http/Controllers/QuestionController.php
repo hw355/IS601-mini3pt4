@@ -30,7 +30,10 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        $question = new Question;
+        $edit = FALSE;
+
+        return view('questionForm', ['question' => $question,'edit' => $edit  ]);
     }
 
     /**
@@ -41,10 +44,22 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->validate([
+            'body' => 'required|min:5',
+        ], [
+            'body.required' => 'Body is required',
+            'body.min' => 'Body must be at least 5 characters',
+        ]);
+        $input = request()->all();
+        $question = new Question($input);
+        $question->user()->associate(Auth::user());
+        $question->save();
+
+        return redirect()->route('home')->with('message', 'A question has been created successfully!!');
     }
 
-    /**
+
+        /**
      * Display the specified resource.
      *
      * @param  int  $id
