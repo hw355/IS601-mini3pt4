@@ -102,6 +102,7 @@ class QuestionController extends Controller
 
         $question->body = $request->body;
         $question->save();
+
         return redirect()->route('questions.show',['question_id' => $question->id])->with('message', 'Your question has been updated successfully!');
     }
 
@@ -111,8 +112,10 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question)
     {
-        //
+        $question->delete();
+
+        return redirect()->route('home')->with('message', 'Your question has been deleted successfully!');
     }
 }
