@@ -25,6 +25,8 @@ Route::get('/user/{user_id}/profile/{profile_id}/edit', 'ProfileController@edit'
 Route::patch('/user/{user_id}/profile/{profile_id}', 'ProfileController@update')->name('profile.update');
 
 Route::get('/question/{question_id}/answer/{answer_id}', 'AnswerController@show')->name('answer.show');
+Route::get('/questions/{question_id}/answers/create', 'AnswerController@create')->name('answers.create');
+Route::post('/questions/{question_id}/answers/', 'AnswerController@store')->name('answers.store');
 
 Route::resources([
     'questions' => 'QuestionController',

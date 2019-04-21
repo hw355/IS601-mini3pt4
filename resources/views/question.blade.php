@@ -28,8 +28,8 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header"><a class="btn btn-primary float-left"
-                                                href="#">
-                            Answer Question
+                                                href="{{ route('answers.create', ['question_id'=> $question->id])}}">
+                            Reply
                         </a></div>
 
                     <div class="card-body">

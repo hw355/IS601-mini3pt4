@@ -76,9 +76,8 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($question)
+    public function edit(Question $question)
     {
-        $question = Question::find($question);
         $edit = TRUE;
 
         return view('questionForm', ['question' => $question, 'edit' => $edit ]);
