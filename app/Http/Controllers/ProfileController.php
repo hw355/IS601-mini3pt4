@@ -59,7 +59,7 @@ class ProfileController extends Controller
         $profile->user()->associate(Auth::user());
         $profile->save();
 
-        return redirect()->route('home')->with('message', 'Your profile has been created successfully!');
+        return redirect()->route('home')->with('message', 'Your profile has been created successfully!!');
     }
 
     /**
@@ -113,7 +113,7 @@ class ProfileController extends Controller
         $profile->body = $request->body;
         $profile->save();
 
-        return redirect()->route('home')->with('message', 'Your profile has been updated successfully!');
+        return redirect()->route('home')->with('message', 'Your profile has been updated successfully!!');
     }
 
 

@@ -102,7 +102,7 @@ class QuestionController extends Controller
         $question->body = $request->body;
         $question->save();
 
-        return redirect()->route('questions.show',['question_id' => $question->id])->with('message', 'Your question has been updated successfully!');
+        return redirect()->route('questions.show',['question_id' => $question->id])->with('message', 'Your question has been updated successfully!!');
     }
 
     /**
