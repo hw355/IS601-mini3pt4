@@ -32,6 +32,8 @@ Route::patch('/questions/{question_id}/answer/{answer_id}', 'AnswerController@up
 Route::delete('/questions/{question_id}/answer/{answer_id}', 'AnswerController@destroy')->name('answers.destroy');
 
 Route::post('/answer/{answer_id}/act', 'QuestionController@actOnAnswer')->name('questions.actOnAnswer');
+Route::get('/questions/{question_id}/answers_sort_by_time', 'QuestionController@sortByTime')->name('Questions.sortByTime');
+Route::get('/questions/{question_id}/answers_sort_by_like', 'QuestionController@sortByLike')->name('Questions.sortByLike');
 Route::resources([
     'questions' => 'QuestionController',
 ]);

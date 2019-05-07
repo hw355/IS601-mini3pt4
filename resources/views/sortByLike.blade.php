@@ -10,9 +10,6 @@
                     <div class="card-body">
 
                         {{$question->body}}
-                        @if ($question->image)
-                            <img src="{{asset("storage/$question->image")}}" alt="{{$question->image}}" class="img-fluid" alt="Responsive image">
-                        @endif
                     </div>
                     <div class="card-footer">
                         <a class="btn btn-primary float-right"

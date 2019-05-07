@@ -24,6 +24,9 @@
                                             </div>
                                             <div class="card-body">
                                                 <p class="card-text">{{$question->body}}</p>
+                                                @if ($question->image)
+                                                    <img src="{{asset("storage/$question->image")}}" alt="{{$question->image}}" class="img-fluid" alt="Responsive image">
+                                                @endif
                                             </div>
                                             <div class="card-footer">
                                                 <p class="card-text">

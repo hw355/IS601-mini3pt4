@@ -17,6 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->longText('body')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
