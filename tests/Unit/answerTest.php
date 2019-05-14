@@ -2,13 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Answer;
-use App\Events\AnswerAction;
-use App\Question;
-use Illuminate\Http\Request;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Events\AnswerAction;
 
 class answerTest extends TestCase
 {
@@ -30,8 +25,9 @@ class answerTest extends TestCase
         $this->assertTrue($answer->save());
     }
 
-    public function testActOnAnswer()
+    public function testLikeEvent()
     {
+        $this->expectsEvents(AnswerAction::class);
         $user = factory(\App\User::class)->make();
         $user->save();
         $question = factory(\App\Question::class)->make();
@@ -41,19 +37,14 @@ class answerTest extends TestCase
         $answer->user()->associate($user);
         $answer->question()->associate($question);
 
-        $action = 'Like';
-
-        if ($action == 'Like') {
-            $answer->likes_count ++;
+        $this->actingAs($user)->post('/answer/{answer_id}/act');
+        $newLikes_count = 0;
+        $action = 'like';
+        if($action == 'like'){
+            $newLikes_count = $answer->likes_count + 1;
         }
 
-        $this->assertTrue($answer->save());
-    }
-
-    public function testLikeCountProperty()
-    {
-        $answer = Answer::find(5);
-        $this->assertIsInt($answer->likes_count);
+        $this->assertTrue($newLikes_count == $answer->likes_count +1);
     }
 
 }

@@ -66,10 +66,10 @@ class QuestionController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
 
-            $name = $question->user_id . '_' . time();
-            $folder = '/uploads/images/';
-            $filePath = $folder . $name . '.' . $image->getClientOriginalExtension();
-            $this->uploadOne($image, $folder, 'public', $name);
+            $name = $question->user_id . '_' . $question->id . '_' . time();
+            $folder = '/uploads/questions/';
+            $filePath = 'https://s3.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . $folder . $name . '.' . $image->getClientOriginalExtension();
+            $this->uploadOne($image, $folder, 's3', $name);
             $question->image = $filePath;
         }
 
@@ -155,8 +155,8 @@ class QuestionController extends Controller
                 break;
         }
 
-        broadcast(new AnswerAction($id, $action))->toOthers();
-
+        //broadcast(new AnswerAction($id, $action))->toOthers();
+        event(new AnswerAction($id, $action));
         return '';
     }
 

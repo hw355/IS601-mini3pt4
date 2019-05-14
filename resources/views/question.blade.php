@@ -11,7 +11,7 @@
 
                         {{$question->body}}
                         @if ($question->image)
-                            <img src="{{asset("storage/$question->image")}}" alt="{{$question->image}}" class="img-fluid" alt="Responsive image">
+                            <img src="{{$question->image}}" alt="{{$question->image}}" class="img-fluid" alt="Responsive image">
                         @endif
                     </div>
                     <div class="card-footer">

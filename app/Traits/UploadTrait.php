@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 trait UploadTrait
 {
-    public function uploadOne(UploadedFile $uploadedFile, $folder = null, $disk = 'public', $filename = null)
+    public function uploadOne(UploadedFile $uploadedFile, $folder = null, $disk = 's3', $filename = null)
     {
         $name = !is_null($filename) ? $filename : Str::random(25);
 

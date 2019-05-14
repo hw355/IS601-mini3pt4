@@ -69,10 +69,10 @@ class AnswerController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
 
-            $name = $answer->user_id . '_' . $answer->question_id . '_' . time();
-            $folder = '/uploads/images/';
-            $filePath = $folder . $name . '.' . $image->getClientOriginalExtension();
-            $this->uploadOne($image, $folder, 'public', $name);
+            $name = $answer->user_id . '_' . $answer->question_id . '_' . $answer->id . '_' . time();
+            $folder = '/uploads/answers/';
+            $filePath = 'https://s3.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . $folder . $name . '.' . $image->getClientOriginalExtension();
+            $this->uploadOne($image, $folder, 's3', $name);
             $answer->image = $filePath;
         }
             $answer->save();

@@ -15,7 +15,7 @@
                                 {!! Form::text('body', $question->body, ['class' => 'form-control','required' => 'required']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::open(['url' => '/uploads/images/', 'role'=>'form', 'files' => true]) !!}
+                                {!! Form::open(['url' => '/uploads/questions/', 'role'=>'form', 'files' => true]) !!}
                                 {!! Form::label('image', 'Image') !!}
                                 {!! Form::file('image', $question->image) !!}
                             </div>
